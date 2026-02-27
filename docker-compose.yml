@@ -3,10 +3,13 @@
 version: '3.8'
 
 services:
+  # Full version with embeddings (~2.5GB)
   api:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        USE_EMBEDDINGS: "true"
     container_name: ats-api
     ports:
       - "8000:8000"
@@ -23,6 +26,24 @@ services:
       timeout: 10s
       retries: 3
       start_period: 10s
+
+  # Lightweight version without embeddings (~400MB) - uncomment if needed
+  # api-light:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #     args:
+  #       USE_EMBEDDINGS: "false"
+  #   container_name: ats-api-light
+  #   ports:
+  #     - "8000:8000"
+  #   environment:
+  #     - ATS_DEBUG=false
+  #     - ATS_USE_EMBEDDINGS=false
+  #     - ATS_MAX_FILE_SIZE_MB=10
+  #   networks:
+  #     - ats-network
+  #   restart: unless-stopped
 
 networks:
   ats-network:

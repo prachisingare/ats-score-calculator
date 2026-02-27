@@ -5,9 +5,9 @@ A production-ready FastAPI application for calculating ATS (Applicant Tracking S
 ## Features
 
 - **Dual Mode Scoring**:
+
   - With Job Description: Compares resume against JD
   - Standalone: Evaluates resume quality independently
-  
 - **File Support**: PDF, DOCX, TXT
 - **Multi-column Resume Handling**: Uses pdfplumber for better text extraction
 - **Semantic Similarity**: Sentence Transformers + TF-IDF fallback
@@ -19,6 +19,7 @@ A production-ready FastAPI application for calculating ATS (Applicant Tracking S
 ### Local Development
 
 1. **Clone and setup**:
+
 ```bash
 git clone <your-repo-url>
 cd ats-score-calculator
@@ -27,16 +28,19 @@ source venv/bin/activate  # Windows: venv\Scripts\activate
 ```
 
 2. **Install dependencies**:
+
 ```bash
 pip install -r requirements.txt
 ```
 
 3. **Run the API**:
+
 ```bash
 uvicorn app.main:app --reload
 ```
 
 4. **Access**:
+
 - API: http://localhost:8000
 - Docs: http://localhost:8000/docs
 
@@ -49,6 +53,7 @@ docker-compose up -d
 ## API Endpoints
 
 ### Calculate ATS Score (Text)
+
 ```bash
 POST /api/v1/ats-score
 Content-Type: application/json
@@ -60,6 +65,7 @@ Content-Type: application/json
 ```
 
 ### Calculate ATS Score (File Upload)
+
 ```bash
 POST /api/v1/ats-score/upload
 Content-Type: multipart/form-data
@@ -69,6 +75,7 @@ jd_text: "Optional job description"
 ```
 
 ### Health Check
+
 ```bash
 GET /health
 ```
@@ -76,6 +83,7 @@ GET /health
 ## Scoring Breakdown
 
 ### With Job Description
+
 - Keyword Match: 20%
 - Skills Match: 25%
 - Semantic Similarity: 15%
@@ -85,6 +93,7 @@ GET /health
 - Completeness: 5%
 
 ### Standalone Mode
+
 - Skills Density: 25%
 - Experience: 20%
 - Education: 15%
