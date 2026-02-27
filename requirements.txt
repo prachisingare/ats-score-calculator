@@ -1,0 +1,25 @@
+fastapi==0.109.2
+uvicorn[standard]==0.27.1
+pydantic==2.6.1
+pydantic-settings==2.1.0
+python-multipart==0.0.9
+nltk==3.8.1
+scikit-learn==1.4.0
+pytest==8.0.0
+httpx==0.26.0
+PyPDF2==3.0.1
+python-docx==1.1.0
+pdfplumber==0.10.4
+
+# Optional: For better semantic similarity with embeddings
+# (downloads ~400MB model on first run)
+# NOTE: Install torch separately based on your system:
+#   CPU only: pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+#   CUDA 11.8: pip install torch torchvision --index-url https://download.pytorch.org/whl/cu118
+#   CUDA 12.1: pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
+sentence-transformers==2.5.1
+transformers==4.38.2
+tokenizers==0.15.2
+huggingface_hub==0.20.3
+safetensors==0.4.2
+torch==2.2.0

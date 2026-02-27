@@ -1,0 +1,29 @@
+# ATS Score Calculator - Docker Compose Configuration
+
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ats-api
+    ports:
+      - "8000:8000"
+    environment:
+      - ATS_DEBUG=false
+      - ATS_USE_EMBEDDINGS=true
+      - ATS_MAX_FILE_SIZE_MB=10
+    networks:
+      - ats-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+networks:
+  ats-network:
+    driver: bridge
